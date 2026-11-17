@@ -1,0 +1,28 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="Brush.WindowTint" Color="#F2F7F8FB"/>
+    <SolidColorBrush x:Key="Brush.WindowFallback" Color="#FFF7F8FB"/>
+    <SolidColorBrush x:Key="Brush.WindowBorder" Color="#1A000000"/>
+    <SolidColorBrush x:Key="Brush.Text" Color="#FF111827"/>
+    <SolidColorBrush x:Key="Brush.TextSecondary" Color="#B8111827"/>
+    <SolidColorBrush x:Key="Brush.TextTertiary" Color="#8C111827"/>
+    <SolidColorBrush x:Key="Brush.Card" Color="#B3FFFFFF"/>
+    <SolidColorBrush x:Key="Brush.CardBorder" Color="#0F000000"/>
+    <SolidColorBrush x:Key="Brush.Divider" Color="#14000000"/>
+    <SolidColorBrush x:Key="Brush.Track" Color="#17000000"/>
+    <SolidColorBrush x:Key="Brush.Calm" Color="#FF0067C0"/>
+    <SolidColorBrush x:Key="Brush.Amber" Color="#FFC27000"/>
+    <SolidColorBrush x:Key="Brush.Red" Color="#FFD13438"/>
+    <SolidColorBrush x:Key="Brush.Accent" Color="#FF0067C0"/>
+    <SolidColorBrush x:Key="Brush.AccentHover" Color="#FF1975C5"/>
+    <SolidColorBrush x:Key="Brush.AccentPressed" Color="#FF005BA8"/>
+    <SolidColorBrush x:Key="Brush.OnAccent" Color="#FFFFFFFF"/>
+    <SolidColorBrush x:Key="Brush.ButtonHover" Color="#0F000000"/>
+    <SolidColorBrush x:Key="Brush.ButtonPressed" Color="#08000000"/>
+    <SolidColorBrush x:Key="Brush.BannerBack" Color="#1FC27000"/>
+    <SolidColorBrush x:Key="Brush.BannerBorder" Color="#40C27000"/>
+    <SolidColorBrush x:Key="Brush.MenuBack" Color="#FFF9FAFC"/>
+    <SolidColorBrush x:Key="Brush.MenuBorder" Color="#1F000000"/>
+    <SolidColorBrush x:Key="Brush.InputBack" Color="#FFFFFFFF"/>
+    <SolidColorBrush x:Key="Brush.InputBorder" Color="#29000000"/>
+</ResourceDictionary>

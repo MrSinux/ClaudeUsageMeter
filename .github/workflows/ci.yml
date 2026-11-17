@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build and test
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - run: dotnet restore ClaudeUsageMeter.sln
+
+      - run: dotnet build ClaudeUsageMeter.sln -c Release --no-restore
+
+      # LiveTests only run when USAGE_METER_LIVE=1, so CI never needs Claude Code.
+      - run: dotnet test ClaudeUsageMeter.sln -c Release --no-build --verbosity normal

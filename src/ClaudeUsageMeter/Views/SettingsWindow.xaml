@@ -1,0 +1,134 @@
+<Window x:Class="ClaudeUsageMeter.Views.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Claude Usage Meter settings"
+        Width="460" SizeToContent="Height" ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource Brush.WindowFallback}"
+        UseLayoutRounding="True" TextOptions.TextFormattingMode="Display"
+        FontFamily="{StaticResource Font.Text}" Icon="/Assets/app.ico">
+    <Window.Resources>
+        <Style x:Key="StepButton" TargetType="Button" BasedOn="{StaticResource SubtleButton}">
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="28"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="FontFamily" Value="{StaticResource Font.Icons}"/>
+            <Setter Property="FontSize" Value="11"/>
+        </Style>
+        <Style x:Key="StepValue" TargetType="TextBlock" BasedOn="{StaticResource Text.Body}">
+            <Setter Property="MinWidth" Value="64"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+
+    <StackPanel Margin="20,16,20,16">
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,14">
+            <Image Source="/Assets/gauge-64.png" Width="24" Height="24" RenderOptions.BitmapScalingMode="HighQuality"/>
+            <TextBlock Text="Settings" Style="{StaticResource Text.Title}" FontSize="18" Margin="10,0,0,0" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <!-- Display -->
+        <Border Style="{StaticResource Section}">
+            <StackPanel>
+                <TextBlock Text="Show the meter as" Style="{StaticResource SectionTitle}"/>
+                <RadioButton x:Name="ModeTray" Content="Tray icon and popup" Style="{StaticResource RadioLine}" GroupName="mode" Checked="Mode_Checked"/>
+                <RadioButton x:Name="ModeStrip" Content="Taskbar strip" Style="{StaticResource RadioLine}" GroupName="mode" Checked="Mode_Checked"/>
+                <RadioButton x:Name="ModeBoth" Content="Both" Style="{StaticResource RadioLine}" GroupName="mode" Checked="Mode_Checked"/>
+                <Button x:Name="ResetStrip" Content="Move the strip back next to the clock" Style="{StaticResource LinkButton}" Margin="28,6,0,0"
+                        HorizontalAlignment="Left" Click="ResetStrip_Click"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Strip blocks -->
+        <Border Style="{StaticResource Section}">
+            <StackPanel>
+                <TextBlock Text="Blocks on the strip" Style="{StaticResource SectionTitle}"/>
+                <StackPanel x:Name="StripBlocksPanel"/>
+                <TextBlock x:Name="StripBlocksEmpty" Text="Blocks appear here after the first successful read." Style="{StaticResource Text.Caption}"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Refresh -->
+        <Border Style="{StaticResource Section}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel VerticalAlignment="Center" Margin="0,0,12,0">
+                    <TextBlock Text="Refresh every" Style="{StaticResource Text.Body}" FontWeight="SemiBold"/>
+                    <TextBlock Text="Each refresh runs claude /usage, which costs no usage." Style="{StaticResource Text.Caption}" Margin="0,2,0,0" TextWrapping="Wrap"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <Button Content="&#xE949;" Style="{StaticResource StepButton}" Click="RefreshDown_Click" AutomationProperties.Name="Less often"/>
+                    <TextBlock x:Name="RefreshValue" Style="{StaticResource StepValue}" Text="2 min"/>
+                    <Button Content="&#xE948;" Style="{StaticResource StepButton}" Click="RefreshUp_Click" AutomationProperties.Name="More often"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Alerts -->
+        <Border Style="{StaticResource Section}">
+            <StackPanel>
+                <CheckBox x:Name="AlertsOn" Style="{StaticResource ToggleSwitch}" Checked="Alerts_Changed" Unchecked="Alerts_Changed">
+                    <StackPanel>
+                        <TextBlock Text="Usage alerts" Style="{StaticResource Text.Body}" FontWeight="SemiBold"/>
+                        <TextBlock Text="A Windows notification once per block per reset." Style="{StaticResource Text.Caption}" Margin="0,2,0,0"/>
+                    </StackPanel>
+                </CheckBox>
+                <Grid x:Name="ThresholdsPanel" Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="First alert at" Style="{StaticResource Text.Body}" VerticalAlignment="Center"/>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                        <Button Content="&#xE949;" Style="{StaticResource StepButton}" Tag="0:-5" Click="Threshold_Click" AutomationProperties.Name="Lower first alert"/>
+                        <TextBlock x:Name="Threshold1" Style="{StaticResource StepValue}" Text="80%"/>
+                        <Button Content="&#xE948;" Style="{StaticResource StepButton}" Tag="0:5" Click="Threshold_Click" AutomationProperties.Name="Raise first alert"/>
+                    </StackPanel>
+                    <TextBlock Grid.Row="1" Text="Second alert at" Style="{StaticResource Text.Body}" VerticalAlignment="Center" Margin="0,6,0,0"/>
+                    <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Margin="0,6,0,0">
+                        <Button Content="&#xE949;" Style="{StaticResource StepButton}" Tag="1:-5" Click="Threshold_Click" AutomationProperties.Name="Lower second alert"/>
+                        <TextBlock x:Name="Threshold2" Style="{StaticResource StepValue}" Text="95%"/>
+                        <Button Content="&#xE948;" Style="{StaticResource StepButton}" Tag="1:5" Click="Threshold_Click" AutomationProperties.Name="Raise second alert"/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </Border>
+
+        <!-- CLI -->
+        <Border Style="{StaticResource Section}">
+            <StackPanel>
+                <TextBlock Text="Claude Code CLI" Style="{StaticResource SectionTitle}"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="CliPath" Style="{StaticResource Field}" LostKeyboardFocus="CliPath_Commit" KeyDown="CliPath_KeyDown"
+                             AutomationProperties.Name="CLI path (leave empty to detect automatically)"/>
+                    <Button Grid.Column="1" Content="Browse" Style="{StaticResource SubtleButton}" Margin="8,0,0,0" Click="Browse_Click"/>
+                </Grid>
+                <TextBlock x:Name="CliStatus" Style="{StaticResource Text.Caption}" TextWrapping="Wrap" Margin="0,6,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Startup -->
+        <Border Style="{StaticResource Section}">
+            <CheckBox x:Name="StartWithWindows" Style="{StaticResource ToggleSwitch}" Checked="Startup_Changed" Unchecked="Startup_Changed">
+                <StackPanel>
+                    <TextBlock Text="Start with Windows" Style="{StaticResource Text.Body}" FontWeight="SemiBold"/>
+                    <TextBlock Text="Per-user, no admin rights needed." Style="{StaticResource Text.Caption}" Margin="0,2,0,0"/>
+                </StackPanel>
+            </CheckBox>
+        </Border>
+
+        <Button Content="Done" Style="{StaticResource AccentButton}" HorizontalAlignment="Right" Margin="0,6,0,0" MinWidth="88" Click="Done_Click" IsDefault="True"/>
+    </StackPanel>
+</Window>

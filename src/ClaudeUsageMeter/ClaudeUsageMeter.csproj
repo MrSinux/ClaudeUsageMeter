@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>ClaudeUsageMeter</AssemblyName>
+    <RootNamespace>ClaudeUsageMeter</RootNamespace>
+    <ApplicationIcon>Assets\app.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <Product>Claude Usage Meter</Product>
+    <AssemblyTitle>Claude Usage Meter</AssemblyTitle>
+    <Company>Lohan Ramachandran</Company>
+    <Copyright>Copyright (c) 2026 Lohan Ramachandran. MIT licence.</Copyright>
+    <Version>1.0.0</Version>
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+    <InvariantGlobalization>false</InvariantGlobalization>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    <!-- Lean runtime: workstation GC without the background thread keeps idle RAM down. -->
+    <ServerGarbageCollector>false</ServerGarbageCollector>
+    <ConcurrentGarbageCollection>false</ConcurrentGarbageCollection>
+    <TieredPGO>true</TieredPGO>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\gauge-64.png" />
+    <Resource Include="Assets\gauge-160.png" />
+    <None Remove="Assets\app.ico" />
+    <Resource Include="Assets\app.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ClaudeUsageMeter.Core\ClaudeUsageMeter.Core.csproj" />
+  </ItemGroup>
+
+</Project>

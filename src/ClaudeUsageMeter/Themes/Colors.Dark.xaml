@@ -1,0 +1,31 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Neutral slate surfaces with a plain Windows-style blue accent. -->
+    <!-- High tint: DWM paints the caption strip solid (= this colour, see WindowEffects), so the acrylic
+         may only add a faint texture or the header would show as a band. -->
+    <SolidColorBrush x:Key="Brush.WindowTint" Color="#F00E131D"/>
+    <SolidColorBrush x:Key="Brush.WindowFallback" Color="#FF111827"/>
+    <SolidColorBrush x:Key="Brush.WindowBorder" Color="#1FFFFFFF"/>
+    <SolidColorBrush x:Key="Brush.Text" Color="#FFF4F6FB"/>
+    <SolidColorBrush x:Key="Brush.TextSecondary" Color="#B8F4F6FB"/>
+    <SolidColorBrush x:Key="Brush.TextTertiary" Color="#80F4F6FB"/>
+    <SolidColorBrush x:Key="Brush.Card" Color="#0DFFFFFF"/>
+    <SolidColorBrush x:Key="Brush.CardBorder" Color="#14FFFFFF"/>
+    <SolidColorBrush x:Key="Brush.Divider" Color="#17FFFFFF"/>
+    <SolidColorBrush x:Key="Brush.Track" Color="#1FFFFFFF"/>
+    <SolidColorBrush x:Key="Brush.Calm" Color="#FF5B8DE0"/>
+    <SolidColorBrush x:Key="Brush.Amber" Color="#FFF7B12E"/>
+    <SolidColorBrush x:Key="Brush.Red" Color="#FFFF5F66"/>
+    <SolidColorBrush x:Key="Brush.Accent" Color="#FF1F6FC5"/>
+    <SolidColorBrush x:Key="Brush.AccentHover" Color="#FF2C7DD4"/>
+    <SolidColorBrush x:Key="Brush.AccentPressed" Color="#FF1A62B0"/>
+    <SolidColorBrush x:Key="Brush.OnAccent" Color="#FFFFFFFF"/>
+    <SolidColorBrush x:Key="Brush.ButtonHover" Color="#14FFFFFF"/>
+    <SolidColorBrush x:Key="Brush.ButtonPressed" Color="#0AFFFFFF"/>
+    <SolidColorBrush x:Key="Brush.BannerBack" Color="#1FF7B12E"/>
+    <SolidColorBrush x:Key="Brush.BannerBorder" Color="#40F7B12E"/>
+    <SolidColorBrush x:Key="Brush.MenuBack" Color="#FF1C2230"/>
+    <SolidColorBrush x:Key="Brush.MenuBorder" Color="#24FFFFFF"/>
+    <SolidColorBrush x:Key="Brush.InputBack" Color="#0FFFFFFF"/>
+    <SolidColorBrush x:Key="Brush.InputBorder" Color="#29FFFFFF"/>
+</ResourceDictionary>
